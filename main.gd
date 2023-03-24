@@ -22,7 +22,6 @@ func _on_rigidbody_spawner_btn():
 
 func _on_server_spawner_btn():
 	pass
-	get_tree().change_scene_to_file("")
 
 func _on_sprite_bw_btn():
 	get_tree().change_scene_to_file("res://sprites_with_bw_shader.tscn")
@@ -32,7 +31,6 @@ func _on_rigidbody_bw_btn():
 
 func _on_server_bw_btn():
 	pass
-	get_tree().change_scene_to_file("")
 
 func _on_sprite_glow_btn():
 	get_tree().change_scene_to_file("res://sprites_with_glow_shader.tscn")
@@ -42,7 +40,6 @@ func _on_rigidbody_glow_btn():
 
 func _on_server_glow_btn():
 	pass
-	get_tree().change_scene_to_file("")
 
 func _on_sprite_world_env_btn():
 	get_tree().change_scene_to_file("res://sprites_with_world_env.tscn")
@@ -52,4 +49,3 @@ func _on_rigidbody_world_env_btn():
 
 func _on_server_world_env_btn():
 	pass
-	get_tree().change_scene_to_file("")

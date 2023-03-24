@@ -1,13 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca535jyyat3dk"]
+[gd_scene load_steps=3 format=3 uid="uid://ca535jyyat3dk"]
 
+[ext_resource type="Script" path="res://common/log.gd" id="1_jlh1f"]
 [ext_resource type="Script" path="res://common/fps_label.gd" id="1_nofwj"]
 
 [node name="LogBG" type="ColorRect"]
 anchors_preset = -1
-anchor_right = 0.54
+anchor_right = 0.603
 anchor_bottom = 0.35
 mouse_filter = 2
 color = Color(0, 0, 0, 0.52549)
+script = ExtResource("1_jlh1f")
 
 [node name="FPSLabel" type="Label" parent="."]
 layout_mode = 1
@@ -26,3 +28,29 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 scroll_following = true
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.066
+anchor_right = 1.141
+anchor_bottom = 0.09
+offset_left = -45.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "back"
+
+[node name="ResetButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.066
+anchor_right = 1.141
+anchor_bottom = 0.09
+offset_left = -45.0
+offset_top = 56.0
+offset_bottom = 87.0
+grow_horizontal = 0
+text = "reset"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]
