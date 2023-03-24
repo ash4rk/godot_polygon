@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcu1xgw8xae0k"]
+
+[ext_resource type="PackedScene" uid="uid://bnsggrfl6euhp" path="res://server_spawner.tscn" id="1_pmon2"]
+[ext_resource type="PackedScene" uid="uid://bn2jcrrqfsv3v" path="res://common/world_environment.tscn" id="2_ok4wt"]
+
+[node name="ServerWithWorldEnv" type="Node"]
+
+[node name="ServerSpawner" parent="." instance=ExtResource("1_pmon2")]
+
+[node name="WorldEnvironment" parent="ServerSpawner/Level" index="2" instance=ExtResource("2_ok4wt")]
+
+[editable path="ServerSpawner"]

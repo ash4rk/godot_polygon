@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcgiexn3x4etr"]
+
+[ext_resource type="PackedScene" uid="uid://bnsggrfl6euhp" path="res://server_spawner.tscn" id="1_ounb1"]
+[ext_resource type="PackedScene" uid="uid://dgahpl4mqixkb" path="res://common/glow_shader.tscn" id="2_6qw6h"]
+
+[node name="ServerWithGlowShader" type="Node"]
+
+[node name="ServerSpawner" parent="." instance=ExtResource("1_ounb1")]
+
+[node name="GlowShader" parent="ServerSpawner" instance=ExtResource("2_6qw6h")]

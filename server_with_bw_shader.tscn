@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqbwr86hp7ay1"]
+
+[ext_resource type="PackedScene" uid="uid://bnsggrfl6euhp" path="res://server_spawner.tscn" id="1_1qju6"]
+[ext_resource type="PackedScene" uid="uid://cl8pyoi1neohx" path="res://common/bw_shader.tscn" id="2_rk16g"]
+
+[node name="ServerWithBWShader" type="Node"]
+
+[node name="ServerSpawner" parent="." instance=ExtResource("1_1qju6")]
+
+[node name="BWShader" parent="ServerSpawner" instance=ExtResource("2_rk16g")]
