@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://c720q1rwbot1w"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_5aycm"]
+
+[node name="Main" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5aycm")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -476.0
+offset_top = -65.5
+offset_right = 476.0
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 250
+columns = 3
+
+[node name="SpritesLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Sprites"
+
+[node name="RigidBodyLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Rigid Body"
+
+[node name="ServerLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Server"
+
+[node name="SpriteSpawnerBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Simple Spawner"
+
+[node name="RigidBodySpawnerBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Simple Spawner"
+
+[node name="ServerSpawnerBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Simple Spawner"
+
+[node name="SpriteBWBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Black/White Shader"
+
+[node name="RigidBodyBWBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Black/White Shader"
+
+[node name="ServerBWBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Black/White Shader"
+
+[node name="SpriteGlowBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Glow Shader"
+
+[node name="RigidBodyGlowBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Glow Shader"
+
+[node name="ServerGlowBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Glow Shader"
+
+[node name="SpriteWorldEnvBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "World Env
+"
+
+[node name="RigidBodyWorldEnvBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "World Env
+"
+
+[node name="ServerWorldEnvBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "World Env
+"
