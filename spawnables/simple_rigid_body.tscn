@@ -7,9 +7,9 @@ size = Vector2(128, 128)
 
 [node name="SimpleRigidBody" type="RigidBody2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 3
-texture = ExtResource("1_lkxpv")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wtmat")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+texture_filter = 3
+texture = ExtResource("1_lkxpv")

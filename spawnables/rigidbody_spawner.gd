@@ -19,8 +19,9 @@ func _on_spawn_sprite_button_button_up():
 	var y_screen = DisplayServer.window_get_size().y
 	simple_rigidbody_instance.global_position = Vector2(randf_range(0, x_screen),randf_range(0, y_screen))
 	sprite_numbers += 1
+	simple_rigidbody_instance.get_node("./CollisionShape2D").scale = object_size
 	_print_log("Added simple sprite " + str(sprite_numbers))
-
 
 func _on_h_slider_value_changed(value):
 	$CanvasLayer/HSlider/SizeLabel.text = "Size: " + str(value)
+	object_size = Vector2(value, value)
