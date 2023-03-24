@@ -1,12 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfhsg8mxupk3f"]
+[gd_scene load_steps=5 format=3 uid="uid://bm310y1uey13t"]
 
-[ext_resource type="Script" path="res://simple_sprite/sprite_spawner.gd" id="1_y1l0w"]
+[ext_resource type="Script" path="res://spawnables/sprite_spawner.gd" id="1_qh373"]
 [ext_resource type="Texture2D" uid="uid://tvg3j776tnst" path="res://common/background.jpg" id="2_bejge"]
 [ext_resource type="Texture2D" uid="uid://caxd6bmqi2nwb" path="res://common/icon.svg" id="3_sgv01"]
 [ext_resource type="PackedScene" uid="uid://ca535jyyat3dk" path="res://common/log.tscn" id="4_7rp82"]
 
-[node name="SimpleSprite" type="Node"]
-script = ExtResource("1_y1l0w")
+[node name="RigidbodySimple" type="Node"]
+script = ExtResource("1_qh373")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

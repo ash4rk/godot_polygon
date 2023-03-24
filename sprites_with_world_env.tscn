@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0ti7tn6v4wye"]
 
-[ext_resource type="PackedScene" uid="uid://bfhsg8mxupk3f" path="res://sprite_spawner.tscn" id="1_e80cr"]
+[ext_resource type="PackedScene" uid="uid://bm310y1uey13t" path="res://sprite_spawner.tscn" id="1_e80cr"]
 
 [sub_resource type="Environment" id="Environment_yorec"]
 background_mode = 3

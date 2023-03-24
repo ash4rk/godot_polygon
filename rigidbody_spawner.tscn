@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdhqn7margc1e"]
+
+[ext_resource type="Script" path="res://spawnables/rigidbody_spawner.gd" id="1_3c5hs"]
+[ext_resource type="Texture2D" uid="uid://caxd6bmqi2nwb" path="res://common/icon.svg" id="2_43cne"]
+[ext_resource type="PackedScene" uid="uid://ca535jyyat3dk" path="res://common/log.tscn" id="3_113bk"]
+[ext_resource type="Texture2D" uid="uid://tvg3j776tnst" path="res://common/background.jpg" id="4_t48vt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtyhu"]
+size = Vector2(1882, 232)
+
+[node name="SimpleSprite" type="Node"]
+script = ExtResource("1_3c5hs")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpawnSpriteButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -68.0
+offset_right = 148.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Spawn Simple Sprite"
+icon = ExtResource("2_43cne")
+
+[node name="LogBG" parent="CanvasLayer" instance=ExtResource("3_113bk")]
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer"]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 88.0
+offset_right = 4.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+min_value = 0.02
+max_value = 1.0
+step = 0.02
+value = 1.0
+
+[node name="SizeLabel" type="Label" parent="CanvasLayer/HSlider"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 18.0
+offset_right = 20.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Size: 1.0"
+
+[node name="Level" type="Node" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Level"]
+texture = ExtResource("4_t48vt")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/StaticBody2D"]
+position = Vector2(726, 847)
+shape = SubResource("RectangleShape2D_jtyhu")
+
+[connection signal="button_up" from="CanvasLayer/SpawnSpriteButton" to="." method="_on_spawn_sprite_button_button_up"]
+[connection signal="value_changed" from="CanvasLayer/HSlider" to="." method="_on_h_slider_value_changed"]
