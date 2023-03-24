@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbetv1ht7aeix"]
+
+[ext_resource type="PackedScene" uid="uid://bfhsg8mxupk3f" path="res://sprite_spawner.tscn" id="1_y3qi5"]
+[ext_resource type="Shader" path="res://common/glow.gdshader" id="2_top4x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lcd0b"]
+shader = ExtResource("2_top4x")
+shader_parameter/bloomRadius = 300.0
+shader_parameter/bloomThreshold = 0.19
+shader_parameter/bloomIntensity = 1.447
+
+[node name="SpritesWithShader" type="Node"]
+
+[node name="SpriteSpawner" parent="." instance=ExtResource("1_y3qi5")]
+
+[node name="GlowShader" type="ColorRect" parent="SpriteSpawner"]
+material = SubResource("ShaderMaterial_lcd0b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -1,7 +1,7 @@
-extends CanvasLayer
+extends Node
 
 const SIMPLE_SPRITE = preload("res://simple_sprite/simple_sprite.tscn")
-@onready var Log : RichTextLabel = $LogBG/Log
+@onready var Log : RichTextLabel = $CanvasLayer/LogBG/Log
 var sprite_numbers: int = 0
 
 func _print_log(text_value : String) -> void:

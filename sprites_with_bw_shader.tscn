@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsjwljegi8d2k"]
+
+[ext_resource type="PackedScene" uid="uid://bfhsg8mxupk3f" path="res://sprite_spawner.tscn" id="1_vbabs"]
+[ext_resource type="Shader" path="res://common/bw.gdshader" id="2_p71di"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lcd0b"]
+shader = ExtResource("2_p71di")
+shader_parameter/bloomRadius = 300.0
+shader_parameter/bloomThreshold = 0.3
+shader_parameter/bloomIntensity = 0.854
+
+[node name="SpritesWithShader" type="Node"]
+
+[node name="SpriteSpawner" parent="." instance=ExtResource("1_vbabs")]
+
+[node name="BWShader" type="ColorRect" parent="SpriteSpawner"]
+material = SubResource("ShaderMaterial_lcd0b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

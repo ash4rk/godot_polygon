@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca535jyyat3dk"]
+
+[ext_resource type="Script" path="res://common/fps_label.gd" id="1_nofwj"]
+
+[node name="LogBG" type="ColorRect"]
+anchors_preset = -1
+anchor_right = 0.54
+anchor_bottom = 0.35
+mouse_filter = 2
+color = Color(0, 0, 0, 0.52549)
+
+[node name="FPSLabel" type="Label" parent="."]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 32
+script = ExtResource("1_nofwj")
+
+[node name="Log" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.166
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+scroll_following = true

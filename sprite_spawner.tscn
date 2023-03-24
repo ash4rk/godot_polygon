@@ -3,18 +3,14 @@
 [ext_resource type="Script" path="res://simple_sprite/sprite_spawner.gd" id="1_y1l0w"]
 [ext_resource type="Texture2D" uid="uid://tvg3j776tnst" path="res://common/background.jpg" id="2_bejge"]
 [ext_resource type="Texture2D" uid="uid://caxd6bmqi2nwb" path="res://common/icon.svg" id="3_sgv01"]
-[ext_resource type="Script" path="res://common/fps_label.gd" id="4_wruds"]
+[ext_resource type="PackedScene" uid="uid://ca535jyyat3dk" path="res://common/log.tscn" id="4_7rp82"]
 
-[node name="SpriteSpawner" type="CanvasLayer"]
+[node name="SimpleSprite" type="Node"]
 script = ExtResource("1_y1l0w")
 
-[node name="Level" type="Node" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Background" type="Sprite2D" parent="Level"]
-texture = ExtResource("2_bejge")
-centered = false
-
-[node name="SpawnSpriteButton" type="Button" parent="."]
+[node name="SpawnSpriteButton" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -29,29 +25,12 @@ grow_vertical = 2
 text = "Spawn Simple Sprite"
 icon = ExtResource("3_sgv01")
 
-[node name="LogBG" type="ColorRect" parent="."]
-anchors_preset = -1
-anchor_right = 0.54
-anchor_bottom = 0.35
-mouse_filter = 2
-color = Color(0, 0, 0, 0.52549)
+[node name="LogBG" parent="CanvasLayer" instance=ExtResource("4_7rp82")]
 
-[node name="FPSLabel" type="Label" parent="LogBG"]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 45.0
-theme_override_font_sizes/font_size = 32
-script = ExtResource("4_wruds")
+[node name="Level" type="Node" parent="."]
 
-[node name="Log" type="RichTextLabel" parent="LogBG"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.166
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-scroll_following = true
+[node name="Background" type="Sprite2D" parent="Level"]
+texture = ExtResource("2_bejge")
+centered = false
 
-[connection signal="button_up" from="SpawnSpriteButton" to="." method="_on_spawn_sprite_button_button_up"]
+[connection signal="button_up" from="CanvasLayer/SpawnSpriteButton" to="." method="_on_spawn_sprite_button_button_up"]

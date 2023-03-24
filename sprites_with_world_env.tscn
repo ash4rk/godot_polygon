@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0ti7tn6v4wye"]
+
+[ext_resource type="PackedScene" uid="uid://bfhsg8mxupk3f" path="res://sprite_spawner.tscn" id="1_e80cr"]
+
+[sub_resource type="Environment" id="Environment_yorec"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 2.04
+glow_strength = 1.35
+glow_blend_mode = 0
+glow_hdr_threshold = 0.53
+glow_hdr_scale = 0.98
+glow_hdr_luminance_cap = 87.0
+glow_map_strength = 0.63
+
+[node name="SpritesWithWorldEnv" type="Node"]
+
+[node name="SpriteSpawner" parent="." instance=ExtResource("1_e80cr")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SpriteSpawner/Level" index="1"]
+environment = SubResource("Environment_yorec")
+
+[editable path="SpriteSpawner"]
