@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpfaa0gcoxfsb"]
+
+[ext_resource type="PackedScene" uid="uid://cdhqn7margc1e" path="res://rigidbody_spawner.tscn" id="1_bx8mc"]
+[ext_resource type="PackedScene" uid="uid://cl8pyoi1neohx" path="res://common/bw_shader.tscn" id="2_rgoak"]
+
+[node name="RigidBodyWithBWShader" type="Node"]
+
+[node name="SimpleSprite" parent="." instance=ExtResource("1_bx8mc")]
+
+[node name="BWShader" parent="SimpleSprite" instance=ExtResource("2_rgoak")]

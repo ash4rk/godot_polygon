@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy1igw6mefwfy"]
+
+[ext_resource type="PackedScene" uid="uid://cdhqn7margc1e" path="res://rigidbody_spawner.tscn" id="1_s7643"]
+[ext_resource type="PackedScene" uid="uid://bn2jcrrqfsv3v" path="res://common/world_environment.tscn" id="2_r0dxb"]
+
+[node name="RigidbodyWithWorldEnv" type="Node"]
+
+[node name="SimpleSprite" parent="." instance=ExtResource("1_s7643")]
+
+[node name="WorldEnvironment" parent="SimpleSprite/Level" index="2" instance=ExtResource("2_r0dxb")]
+
+[editable path="SimpleSprite"]

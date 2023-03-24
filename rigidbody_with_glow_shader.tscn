@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcf5acc4uklrw"]
+
+[ext_resource type="PackedScene" uid="uid://cdhqn7margc1e" path="res://rigidbody_spawner.tscn" id="1_uxcfh"]
+[ext_resource type="PackedScene" uid="uid://dgahpl4mqixkb" path="res://common/glow_shader.tscn" id="2_b84w6"]
+
+[node name="RigidbodyWithGlowShader" type="Node"]
+
+[node name="SimpleSprite" parent="." instance=ExtResource("1_uxcfh")]
+
+[node name="GlowShader" parent="SimpleSprite" instance=ExtResource("2_b84w6")]
