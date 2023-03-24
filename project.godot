@@ -11,9 +11,19 @@ config_version=5
 [application]
 
 config/name="godot_polygon"
+run/main_scene="res://sprite_spawner.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://common/icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/vsync/vsync_mode=0
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
