@@ -21,7 +21,7 @@ func _on_rigidbody_spawner_btn():
 	get_tree().change_scene_to_file("res://rigidbody_spawner.tscn")
 
 func _on_server_spawner_btn():
-	pass
+	get_tree().change_scene_to_file("res://server_spawner.tscn")
 
 func _on_sprite_bw_btn():
 	get_tree().change_scene_to_file("res://sprites_with_bw_shader.tscn")

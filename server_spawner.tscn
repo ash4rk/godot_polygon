@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnsggrfl6euhp"]
+
+[ext_resource type="Script" path="res://spawnables/server_spawner.gd" id="1_ua2st"]
+[ext_resource type="Texture2D" uid="uid://caxd6bmqi2nwb" path="res://common/icon.svg" id="2_r6aql"]
+[ext_resource type="PackedScene" uid="uid://ca535jyyat3dk" path="res://common/log.tscn" id="3_tghqk"]
+[ext_resource type="Texture2D" uid="uid://tvg3j776tnst" path="res://common/background.jpg" id="4_ytrak"]
+[ext_resource type="Script" path="res://spawnables/icons_ps.gd" id="5_g8a76"]
+
+[node name="ServerSpawner" type="Node"]
+script = ExtResource("1_ua2st")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpawnSpriteButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -68.0
+offset_right = 148.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Spawn Simple Sprite"
+icon = ExtResource("2_r6aql")
+
+[node name="LogBG" parent="CanvasLayer" instance=ExtResource("3_tghqk")]
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer"]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 88.0
+offset_right = 4.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 10000.0
+step = 100.0
+value = 500.0
+
+[node name="SizeLabel" type="Label" parent="CanvasLayer/HSlider"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 18.0
+offset_right = 20.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Number of objects : 500"
+
+[node name="Level" type="Node" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Level"]
+texture = ExtResource("4_ytrak")
+centered = false
+
+[node name="Icons" type="Node2D" parent="Level"]
+script = ExtResource("5_g8a76")
+
+[connection signal="button_up" from="CanvasLayer/SpawnSpriteButton" to="." method="_on_spawn_sprite_button_button_up"]
+[connection signal="value_changed" from="CanvasLayer/HSlider" to="." method="_on_h_slider_value_changed"]

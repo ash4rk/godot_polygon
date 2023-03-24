@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://caxd6bmqi2nwb" path="res://common/icon.svg" id="3_sgv01"]
 [ext_resource type="PackedScene" uid="uid://ca535jyyat3dk" path="res://common/log.tscn" id="4_7rp82"]
 
-[node name="RigidbodySimple" type="Node"]
+[node name="SpriteSpawner" type="Node"]
 script = ExtResource("1_qh373")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
