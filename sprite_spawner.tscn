@@ -27,6 +27,40 @@ icon = ExtResource("3_sgv01")
 
 [node name="LogBG" parent="CanvasLayer" instance=ExtResource("4_7rp82")]
 
+[node name="HSlider" type="HSlider" parent="CanvasLayer"]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 88.0
+offset_right = 4.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 1000.0
+step = 50.0
+value = 500.0
+
+[node name="SizeLabel" type="Label" parent="CanvasLayer/HSlider"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 18.0
+offset_right = 20.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Number of objects : 500"
+
 [node name="Level" type="Node" parent="."]
 
 [node name="Background" type="Sprite2D" parent="Level"]
@@ -34,3 +68,4 @@ texture = ExtResource("2_bejge")
 centered = false
 
 [connection signal="button_up" from="CanvasLayer/SpawnSpriteButton" to="." method="_on_spawn_sprite_button_button_up"]
+[connection signal="value_changed" from="CanvasLayer/HSlider" to="." method="_on_h_slider_value_changed"]
