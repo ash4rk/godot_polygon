@@ -3,6 +3,7 @@ extends Node
 const SIMPLE_SPRITE = preload("res://spawnables/simple_sprite.tscn")
 @onready var Log : RichTextLabel = $CanvasLayer/LogBG/Log
 var sprite_numbers: int = 500
+var sprite_number: int = 0
 
 func _print_log(text_value : String) -> void:
 	Log.text += text_value + "\n"
@@ -19,7 +20,8 @@ func _on_spawn_sprite_button_button_up():
 		var x_screen = DisplayServer.window_get_size().x
 		var y_screen = DisplayServer.window_get_size().y
 		simple_sprite_instance.global_position = Vector2(randf_range(0, x_screen),randf_range(0, y_screen))
-
+		sprite_number += 1
+		_print_log("Added simple sprite number: " + str(sprite_number))
 	_print_log("Added " + str(sprite_numbers) + " simple sprites")
 
 func _on_h_slider_value_changed(value):
