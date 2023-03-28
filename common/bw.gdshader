@@ -42,5 +42,5 @@ void fragment() {
 //	vec3 bloom = GetBloom(SCREEN_TEXTURE, SCREEN_UV, SCREEN_PIXEL_SIZE/15.0);
 //	col.rgb += bloom * bloomIntensity;
 	float gray_scale = (col.r + col.g + col.b)/3.0;
-	COLOR = vec4(gray_scale);
+	COLOR.rgb = vec3(gray_scale);
 }

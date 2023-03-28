@@ -16,6 +16,8 @@ func _ready():
 	#3D
 	$VBoxContainer/ThreeDimGridContainer/Simple3DBtn.pressed.connect(_on_simple_3D_btn)
 	$VBoxContainer/ThreeDimGridContainer/ThreeDimWithLightsBtn.pressed.connect(_on_three_dim_with_lights_btn)
+	$VBoxContainer/ThreeDimGridContainer/ThreeDimBWShaderBtn.pressed.connect(_on_three_dim_bw_shader_btn)
+	
 
 func _on_sprite_spawner_btn():
 	get_tree().change_scene_to_file("res://sprite_spawner.tscn")
@@ -58,3 +60,6 @@ func _on_simple_3D_btn():
 
 func _on_three_dim_with_lights_btn():
 	get_tree().change_scene_to_file("res://three_dim_with_light.tscn")
+	
+func _on_three_dim_bw_shader_btn():
+	get_tree().change_scene_to_file("res://three_dim_bw_shader.tscn")

@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://cn2oxoeigytuh"]
+
+[ext_resource type="Script" path="res://common/camera.gd" id="1_fi34b"]
+[ext_resource type="PackedScene" uid="uid://cl8pyoi1neohx" path="res://common/bw_shader.tscn" id="2_efelq"]
+[ext_resource type="PackedScene" uid="uid://ca535jyyat3dk" path="res://common/log.tscn" id="3_6xapk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig0r5"]
+sky_top_color = Color(0.717647, 0.188235, 0.611765, 1)
+sky_horizon_color = Color(0.862745, 0.360784, 0, 1)
+ground_bottom_color = Color(0.262745, 0.0941176, 0.384314, 1)
+ground_horizon_color = Color(1, 0.356863, 0.858824, 1)
+
+[sub_resource type="Sky" id="Sky_8xm18"]
+sky_material = SubResource("ProceduralSkyMaterial_ig0r5")
+
+[sub_resource type="Environment" id="Environment_18s0e"]
+background_mode = 2
+sky = SubResource("Sky_8xm18")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.5
+tonemap_mode = 3
+tonemap_white = 6.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_kica1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8lt6v"]
+
+[node name="ThreeDimBWShader" type="Node"]
+
+[node name="TheeDimWithLight" type="Node" parent="."]
+
+[node name="Simple3DLevel" type="Node" parent="TheeDimWithLight"]
+
+[node name="Level" type="Node" parent="TheeDimWithLight/Simple3DLevel"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="TheeDimWithLight/Simple3DLevel/Level"]
+environment = SubResource("Environment_18s0e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="TheeDimWithLight/Simple3DLevel/Level"]
+transform = Transform3D(0.990536, -0.0291832, 0.134116, 0, 0.977135, 0.212621, -0.137254, -0.210609, 0.967887, 0, 4.36536, 0)
+light_color = Color(0.501961, 0.415686, 1, 1)
+light_energy = 1.3
+shadow_enabled = true
+shadow_bias = 0.032
+directional_shadow_mode = 0
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 24.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheeDimWithLight/Simple3DLevel/Level"]
+mesh = SubResource("BoxMesh_kica1")
+
+[node name="Camera" type="Marker3D" parent="TheeDimWithLight/Simple3DLevel/Level/MeshInstance3D"]
+script = ExtResource("1_fi34b")
+
+[node name="Camera3D" type="Camera3D" parent="TheeDimWithLight/Simple3DLevel/Level/MeshInstance3D/Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TheeDimWithLight/Simple3DLevel/Level/MeshInstance3D/Camera/Camera3D"]
+
+[node name="BWShader" parent="TheeDimWithLight/Simple3DLevel/Level/MeshInstance3D/Camera/Camera3D/CanvasLayer" instance=ExtResource("2_efelq")]
+
+[node name="LogBG" parent="TheeDimWithLight/Simple3DLevel/Level/MeshInstance3D/Camera/Camera3D/CanvasLayer" instance=ExtResource("3_6xapk")]
+
+[node name="Floor" type="MeshInstance3D" parent="TheeDimWithLight/Simple3DLevel/Level"]
+transform = Transform3D(6.10605, 0, 0, 0, 1, 0, 0, 0, 6.25536, 0, -0.592298, 0)
+mesh = SubResource("PlaneMesh_8lt6v")

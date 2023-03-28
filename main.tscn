@@ -108,3 +108,8 @@ text = "Simple 3D Level"
 layout_mode = 2
 text = "With Sky and Light
 "
+
+[node name="ThreeDimBWShaderBtn" type="Button" parent="VBoxContainer/ThreeDimGridContainer"]
+layout_mode = 2
+text = "Sky, Light, BW Shader
+"
