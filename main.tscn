@@ -103,3 +103,8 @@ text = "3D"
 [node name="Simple3DBtn" type="Button" parent="VBoxContainer/ThreeDimGridContainer"]
 layout_mode = 2
 text = "Simple 3D Level"
+
+[node name="ThreeDimWithLightsBtn" type="Button" parent="VBoxContainer/ThreeDimGridContainer"]
+layout_mode = 2
+text = "With Sky and Light
+"

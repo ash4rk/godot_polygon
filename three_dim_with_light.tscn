@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgvgv2kowjc8e"]
+
+[ext_resource type="PackedScene" uid="uid://n0e2sedpmtso" path="res://simple_3d_level.tscn" id="1_p0eh3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig0r5"]
+sky_top_color = Color(0.717647, 0.188235, 0.611765, 1)
+sky_horizon_color = Color(0.862745, 0.360784, 0, 1)
+ground_bottom_color = Color(0.262745, 0.0941176, 0.384314, 1)
+ground_horizon_color = Color(1, 0.356863, 0.858824, 1)
+
+[sub_resource type="Sky" id="Sky_8xm18"]
+sky_material = SubResource("ProceduralSkyMaterial_ig0r5")
+
+[sub_resource type="Environment" id="Environment_18s0e"]
+background_mode = 2
+sky = SubResource("Sky_8xm18")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.5
+tonemap_mode = 3
+tonemap_white = 6.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8lt6v"]
+
+[node name="TheeDimWithLight" type="Node"]
+
+[node name="Simple3DLevel" parent="." instance=ExtResource("1_p0eh3")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Simple3DLevel/Level" index="0"]
+environment = SubResource("Environment_18s0e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Simple3DLevel/Level" index="1"]
+transform = Transform3D(0.990536, -0.0291832, 0.134116, 0, 0.977135, 0.212621, -0.137254, -0.210609, 0.967887, 0, 4.36536, 0)
+light_color = Color(0.501961, 0.415686, 1, 1)
+light_energy = 1.3
+shadow_enabled = true
+shadow_bias = 0.032
+directional_shadow_mode = 0
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 24.0
+
+[node name="Floor" type="MeshInstance3D" parent="Simple3DLevel/Level" index="3"]
+transform = Transform3D(6.10605, 0, 0, 0, 1, 0, 0, 0, 6.25536, 0, -0.592298, 0)
+mesh = SubResource("PlaneMesh_8lt6v")
+
+[editable path="Simple3DLevel"]

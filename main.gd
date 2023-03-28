@@ -15,6 +15,7 @@ func _ready():
 	$VBoxContainer/GridContainer/ServerWorldEnvBtn.pressed.connect(_on_server_world_env_btn)
 	#3D
 	$VBoxContainer/ThreeDimGridContainer/Simple3DBtn.pressed.connect(_on_simple_3D_btn)
+	$VBoxContainer/ThreeDimGridContainer/ThreeDimWithLightsBtn.pressed.connect(_on_three_dim_with_lights_btn)
 
 func _on_sprite_spawner_btn():
 	get_tree().change_scene_to_file("res://sprite_spawner.tscn")
@@ -54,3 +55,6 @@ func _on_server_world_env_btn():
 
 func _on_simple_3D_btn():
 	get_tree().change_scene_to_file("res://simple_3d_level.tscn")
+
+func _on_three_dim_with_lights_btn():
+	get_tree().change_scene_to_file("res://three_dim_with_light.tscn")
