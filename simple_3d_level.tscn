@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://n0e2sedpmtso"]
+
+[ext_resource type="PackedScene" uid="uid://ca535jyyat3dk" path="res://common/log.tscn" id="1_ahsrm"]
+[ext_resource type="Script" path="res://common/camera.gd" id="2_7exml"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kica1"]
+
+[node name="Simple3DLevel" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LogBG" parent="CanvasLayer" instance=ExtResource("1_ahsrm")]
+
+[node name="Level" type="Node" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level"]
+mesh = SubResource("BoxMesh_kica1")
+
+[node name="Camera" type="Marker3D" parent="Level/MeshInstance3D"]
+script = ExtResource("2_7exml")
+
+[node name="Camera3D" type="Camera3D" parent="Level/MeshInstance3D/Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+current = true
