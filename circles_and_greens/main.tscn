@@ -18,8 +18,11 @@ color = Color(0.356863, 0.466667, 0.835294, 1)
 position = Vector2(958, 154)
 
 [node name="Player" parent="." instance=ExtResource("1_ak58i")]
+modulate = Color(0.521569, 1, 0.686275, 1)
 position = Vector2(407, 265)
 script = ExtResource("3_m62iy")
 
 [node name="Player2" parent="." instance=ExtResource("1_ak58i")]
-position = Vector2(698, 478)
+modulate = Color(0.772549, 0.0666667, 0.321569, 1)
+position = Vector2(1289, 704)
+level = 2.0
