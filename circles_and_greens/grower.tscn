@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3vkmdli6ge7l"]
+
+[ext_resource type="Script" path="res://grower.gd" id="1_ghhok"]
+[ext_resource type="Texture2D" uid="uid://cig0c3x035skf" path="res://assets/circle_green.png" id="1_mk46r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fxect"]
+radius = 69.1809
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2n3pl"]
+radius = 277.613
+
+[node name="Grower" type="StaticBody2D" groups=["growers"]]
+script = ExtResource("1_ghhok")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_mk46r")
+
+[node name="AreaSprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.305882)
+scale = Vector2(2, 2)
+texture = ExtResource("1_mk46r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fxect")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2n3pl")

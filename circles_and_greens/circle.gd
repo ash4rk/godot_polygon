@@ -34,3 +34,15 @@ func _set_level(value):
 	level = value
 	scale = Vector2(level, level)
 	speed = INIT_SPEED /level
+
+func _on_area_2d_area_entered(area):
+	var body = area.get_parent()
+	if body.is_in_group("growers") and !body.is_active:
+		_is_grows = true
+		body.is_active = true
+
+func _on_area_2d_area_exited(area):
+	var body = area.get_parent()
+	if body.is_in_group("growers"):
+		_is_grows = false
+		body.is_active = false
