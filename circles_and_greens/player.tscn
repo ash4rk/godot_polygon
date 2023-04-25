@@ -17,6 +17,18 @@ properties/0/sync = true
 properties/1/path = NodePath("NameLabel:text")
 properties/1/spawn = true
 properties/1/sync = false
+properties/2/path = NodePath(".:level")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("LevelLabel:text")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath(".:_is_grows")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath(".:_is_damaged")
+properties/5/spawn = true
+properties/5/sync = true
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oxgux"]
 properties/0/path = NodePath(".:motion")

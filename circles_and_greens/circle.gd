@@ -12,9 +12,9 @@ const GROW_SPEED = 0.5
 @export var speed = 400
 @export var level: float = 1.0 : set = _set_level
 
-var _is_dead: bool = false
-var _is_grows: bool = false
-var _is_damaged: bool = false
+@export var _is_dead: bool = false
+@export var _is_grows: bool = false
+@export var _is_damaged: bool = false
 
 func _ready():
 	position = synced_position
@@ -78,3 +78,13 @@ func _on_area_2d_area_exited(area):
 
 func set_player_name(value):
 	get_node("NameLabel").text = value
+
+func set_random_color():
+	var colors = [Color(1.0, 0.0, 0.0, 1.0),
+		Color(0.0, 1.0, 0.0, 1.0),
+		Color(0.0, 0.0, 1.0, 1.0),
+		Color(0.1, 0.3, 1.0, 1.0),
+		Color(0.9, 0.3, 0.1, 1.0),
+		Color(0.4, 0.3, 1.0, 1.0),]
+	randomize()
+	self.modulate = colors[randi() % colors.size()]

@@ -8,6 +8,7 @@ var motion = Vector2():
 
 func update():
 	var m = Vector2()
+	
 	if Input.is_action_pressed("left"):
 		m += Vector2(-1, 0)
 	if Input.is_action_pressed("right"):

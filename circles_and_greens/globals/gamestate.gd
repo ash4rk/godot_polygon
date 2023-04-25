@@ -129,6 +129,7 @@ func begin_game():
 		player.synced_position = spawn_pos
 		player.name = str(p_id)
 		player.set_player_name(player_name if p_id == multiplayer.get_unique_id() else players[p_id])
+		player.set_random_color()
 		world.get_node("Players").add_child(player)
 
 
