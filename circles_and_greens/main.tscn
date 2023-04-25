@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://besgpxovvdayd"]
+
+[ext_resource type="PackedScene" uid="uid://2n51nru40gcj" path="res://player.tscn" id="1_ak58i"]
+
+[node name="main" type="Node"]
+
+[node name="BGColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.356863, 0.466667, 0.835294, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_ak58i")]
+position = Vector2(407, 265)
