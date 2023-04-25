@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://besgpxovvdayd"]
+[gd_scene load_steps=3 format=3 uid="uid://besgpxovvdayd"]
 
-[ext_resource type="PackedScene" uid="uid://2n51nru40gcj" path="res://player.tscn" id="1_ak58i"]
+[ext_resource type="PackedScene" uid="uid://d31iswwki2vc" path="res://player.tscn" id="1_ak58i"]
+[ext_resource type="Script" path="res://circle.gd" id="2_cvvnq"]
 
 [node name="main" type="Node"]
 
@@ -14,3 +15,7 @@ color = Color(0.356863, 0.466667, 0.835294, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_ak58i")]
 position = Vector2(407, 265)
+
+[node name="Player2" parent="." instance=ExtResource("1_ak58i")]
+position = Vector2(748, 380)
+script = ExtResource("2_cvvnq")
