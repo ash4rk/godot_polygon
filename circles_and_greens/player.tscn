@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d31iswwki2vc"]
+[gd_scene load_steps=8 format=3 uid="uid://d31iswwki2vc"]
 
 [ext_resource type="Script" path="res://circle.gd" id="1_7iy72"]
 [ext_resource type="Texture2D" uid="uid://cbclpqc0r2x4v" path="res://icon.svg" id="2_7msjj"]
+[ext_resource type="Script" path="res://player_controls.gd" id="3_um3fr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd12u"]
 size = Vector2(120, 121)
@@ -9,7 +10,22 @@ size = Vector2(120, 121)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lu0ei"]
 size = Vector2(128, 128)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nw4lw"]
+properties/0/path = NodePath(".:synced_position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("NameLabel:text")
+properties/1/spawn = true
+properties/1/sync = false
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oxgux"]
+properties/0/path = NodePath(".:motion")
+properties/0/spawn = true
+properties/0/sync = true
+
 [node name="Player" type="CharacterBody2D" groups=["players"]]
+z_index = 10
+motion_mode = 1
 script = ExtResource("1_7iy72")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -36,10 +52,28 @@ text = "level"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -28.0
+offset_top = -77.0
+offset_right = 32.0
+offset_bottom = -51.0
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_lu0ei")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nw4lw")
+
+[node name="Inputs" type="Node" parent="."]
+script = ExtResource("3_um3fr")
+
+[node name="InputsSync" type="MultiplayerSynchronizer" parent="Inputs"]
+replication_config = SubResource("SceneReplicationConfig_oxgux")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

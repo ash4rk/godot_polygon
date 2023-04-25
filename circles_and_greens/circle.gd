@@ -2,6 +2,11 @@ extends CharacterBody2D
 
 class_name Circle
 
+const MOTION_SPEED = 90.0
+@export var synced_position := Vector2()
+
+@onready var inputs = $Inputs
+
 const INIT_SPEED = 400
 const GROW_SPEED = 0.5
 @export var speed = 400
@@ -10,6 +15,29 @@ const GROW_SPEED = 0.5
 var _is_dead: bool = false
 var _is_grows: bool = false
 var _is_damaged: bool = false
+
+func _ready():
+	position = synced_position
+	if str(name).is_valid_int():
+		get_node("Inputs/InputsSync").set_multiplayer_authority(str(name).to_int())
+
+func _physics_process(delta):
+	if multiplayer.multiplayer_peer == null or str(multiplayer.get_unique_id()) == str(name):
+		# The client which this player represent will update the controls state, and notify it to everyone.
+		inputs.update()
+		
+	if multiplayer.multiplayer_peer == null or is_multiplayer_authority():
+		
+		# The server updates the position that will be notified to the clients.
+		synced_position = position
+	else:
+		
+		# The client simply updates the position to the last known one.
+		position = synced_position
+		
+	velocity = inputs.motion * MOTION_SPEED
+	move_and_slide()
+
 
 func _process(delta):
 	$LevelLabel.text = str(level).pad_decimals(2)
@@ -46,3 +74,7 @@ func _on_area_2d_area_exited(area):
 	if body.is_in_group("growers"):
 		_is_grows = false
 		body.is_active = false
+
+
+func set_player_name(value):
+	get_node("NameLabel").text = value
