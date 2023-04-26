@@ -89,6 +89,7 @@ func load_world():
 func host_game(new_player_name):
 	player_name = new_player_name
 	peer = ENetMultiplayerPeer.new()
+	peer.set_bind_ip("0.0.0.0")
 	peer.create_server(DEFAULT_PORT, MAX_PEERS)
 	multiplayer.set_multiplayer_peer(peer)
 
