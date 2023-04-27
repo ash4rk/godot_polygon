@@ -115,19 +115,28 @@ text = "127.0.0.1"
 
 [node name="Host" type="Button" parent="Connect"]
 layout_mode = 0
-offset_left = 203.5
-offset_top = 32.5
-offset_right = 247.5
-offset_bottom = 63.5
+offset_left = 601.5
+offset_top = -245.5
+offset_right = 645.5
+offset_bottom = -214.5
 text = "Host"
 
 [node name="Join" type="Button" parent="Connect"]
 layout_mode = 0
-offset_left = 204.5
+offset_left = 206.5
 offset_top = 89.5
-offset_right = 242.5
+offset_right = 244.5
 offset_bottom = 120.5
 text = "Join"
+
+[node name="Refresh" type="Button" parent="Connect"]
+layout_mode = 0
+offset_left = 526.5
+offset_top = -280.5
+offset_right = 645.5
+offset_bottom = -249.5
+text = "Refresh Lobby
+"
 
 [node name="ErrorLabel" type="Label" parent="Connect"]
 layout_mode = 1
@@ -147,3 +156,4 @@ grow_vertical = 0
 [connection signal="pressed" from="Players/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Connect/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="Connect/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Connect/Refresh" to="." method="_on_refresh_pressed"]

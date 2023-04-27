@@ -86,12 +86,13 @@ func load_world():
 	get_tree().set_pause(false) # Unpause and unleash the game!
 
 
-func host_game(new_player_name):
+func host_game(new_player_name: String, port: int) -> Error:
 	player_name = new_player_name
 	peer = ENetMultiplayerPeer.new()
 	peer.set_bind_ip("0.0.0.0")
-	peer.create_server(DEFAULT_PORT, MAX_PEERS)
+	var err = peer.create_server(port, MAX_PEERS)
 	multiplayer.set_multiplayer_peer(peer)
+	return err
 
 
 func join_game(ip, new_player_name):

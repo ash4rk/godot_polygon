@@ -14,6 +14,28 @@ func _ready():
 		var desktop_path = OS.get_system_dir(0).replace("\\", "/").split("/")
 		$Connect/Name.text = desktop_path[desktop_path.size() - 2]
 
+	if OS.get_cmdline_user_args().has("--server"):  
+		var arguments = _parse_cmdline_user_args()
+		print("auto run server with port ", arguments["port"])
+		var err = gamestate.host_game("Server", int(arguments["port"]))
+		if (err == Error.OK):
+			$Connect.hide()
+			$Players.show()
+			refresh_lobby()
+		else:
+			print("Auto server host failed. Error: ", err)
+
+func _parse_cmdline_user_args():
+	print("cmdline_user_args: ", OS.get_cmdline_user_args())		
+	var arguments = {}
+	for argument in OS.get_cmdline_user_args():
+		if argument.find("=") > -1:
+			var key_value = argument.split("=")
+			arguments[key_value[0].lstrip("--")] = key_value[1]
+		else:
+		# Options without an argument will be present in the dictionary,  # with the value set to an empty string.
+			arguments[argument.lstrip("--")] = ""
+	return arguments
 
 func _on_host_pressed():
 	if $Connect/Name.text == "":
@@ -25,8 +47,9 @@ func _on_host_pressed():
 	$Connect/ErrorLabel.text = ""
 
 	var player_name = $Connect/Name.text
-	gamestate.host_game(player_name)
+	gamestate.host_game(player_name, 10567)
 	refresh_lobby()
+
 
 
 func _on_join_pressed():
@@ -86,3 +109,7 @@ func refresh_lobby():
 
 func _on_start_pressed():
 	gamestate.begin_game()
+
+
+func _on_refresh_pressed():
+	refresh_lobby()
