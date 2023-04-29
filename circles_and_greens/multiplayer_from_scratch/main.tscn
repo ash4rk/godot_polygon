@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://4tuihnxrtvjh"]
+
+[ext_resource type="Texture2D" uid="uid://cig0c3x035skf" path="res://assets/circle_green.png" id="1_74rbc"]
+[ext_resource type="Script" path="res://multiplayer_from_scratch/main.gd" id="1_m3exi"]
+
+[node name="MainGame" type="Node"]
+script = ExtResource("1_m3exi")
+
+[node name="BG" type="Sprite2D" parent="."]
+modulate = Color(0.113725, 0.333333, 0.72549, 1)
+position = Vector2(303, 301)
+scale = Vector2(2, 2)
+texture = ExtResource("1_74rbc")
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://multiplayer_from_scratch/character.tscn")
+spawn_path = NodePath("../Players")
+
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="HostButton" type="Button" parent="Menu"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "I AM HOST"
+
+[node name="ClientButton" type="Button" parent="Menu"]
+offset_top = 35.0
+offset_right = 115.0
+offset_bottom = 66.0
+text = "I AM ClIENT!"
+
+[connection signal="pressed" from="Menu/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="Menu/ClientButton" to="." method="_on_client_button_pressed"]
