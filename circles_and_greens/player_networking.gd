@@ -1,15 +1,11 @@
-extends Node
+extends Node2D
 
 @onready var character = get_parent()
 
-var sync_position : Vector2:
-	set(value):
-		sync_position = value
-		processed_position = false
-var sync_velocity : Vector2
+@export var target := Vector2(0.0, 0.0)
 
-var processed_position : bool
-
+func update():
+	target = get_global_mouse_position()
 
 var sync_level: float = 1.0 : set = _set_sync_level
 var sync_is_dead: bool = false

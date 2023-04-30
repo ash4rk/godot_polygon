@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://brtuykh4ii33c"]
+[gd_scene load_steps=8 format=3 uid="uid://brtuykh4ii33c"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_gpq1j"]
 [ext_resource type="Texture2D" uid="uid://cbclpqc0r2x4v" path="res://icon.svg" id="2_jthtn"]
@@ -10,25 +10,27 @@ size = Vector2(121, 120)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8nj5"]
 size = Vector2(129, 128)
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gtn4u"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_agd58"]
 properties/0/path = NodePath(".:sync_position")
 properties/0/spawn = true
 properties/0/sync = true
-properties/1/path = NodePath(".:sync_velocity")
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gtn4u"]
+properties/0/path = NodePath(".:sync_level")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:sync_is_dead")
 properties/1/spawn = true
 properties/1/sync = true
-properties/2/path = NodePath(".:sync_level")
+properties/2/path = NodePath(".:sync_is_grows")
 properties/2/spawn = true
 properties/2/sync = true
-properties/3/path = NodePath(".:sync_is_dead")
+properties/3/path = NodePath(".:sync_is_damaged")
 properties/3/spawn = true
 properties/3/sync = true
-properties/4/path = NodePath(".:sync_is_grows")
+properties/4/path = NodePath(".:target")
 properties/4/spawn = true
 properties/4/sync = true
-properties/5/path = NodePath(".:sync_is_damaged")
-properties/5/spawn = true
-properties/5/sync = true
 
 [node name="Character" type="CharacterBody2D" groups=["characters"]]
 script = ExtResource("1_gpq1j")
@@ -70,7 +72,10 @@ shape = SubResource("RectangleShape2D_pu7kb")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_h8nj5")
 
-[node name="Networking" type="Node" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_agd58")
+
+[node name="Networking" type="Node2D" parent="."]
 script = ExtResource("3_t3uu5")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Networking"]

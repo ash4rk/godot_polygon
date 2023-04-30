@@ -1,36 +1,37 @@
 extends CharacterBody2D
 
 @export var speed = 400
+@export var sync_position := Vector2()
 
+@onready var inputs = $Networking
 const INIT_SPEED = 400
 const GROW_SPEED = 0.5
 
 func _ready():
-	position = $Networking.sync_position
+	position = sync_position
 	if str(name).is_valid_int():
 		$Networking/MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 
+
 func _physics_process(_delta):
-	if $Networking.sync_is_dead:
-		return
 	
-	if !is_local_authority():
-		if not $Networking.processed_position:
-			position = $Networking.sync_position
-			$Networking.processed_position = true
-		velocity = $Networking.sync_velocity
+	if multiplayer.multiplayer_peer == null or str(multiplayer.get_unique_id()) == str(name):
+		# The client which this player represent will update the controls state, and notify it to everyone.
+		inputs.update()
+
+	if multiplayer.multiplayer_peer == null or is_multiplayer_authority():
 		
-		move_and_slide()
-		return
-	
-	var target = get_global_mouse_position()
-	velocity = position.direction_to(target) * speed
+		# The server updates the position that will be notified to the clients.
+		sync_position = position
+	else:
+		# The client simply updates the position to the last known one.
+		position = sync_position
+
+	velocity = position.direction_to(inputs.target) * speed
 	#look_at(target)
-	if position.distance_to(target) > 10:
+	if position.distance_to(inputs.target) > 10:
 		move_and_slide()
 
-	$Networking.sync_position = position
-	$Networking.sync_velocity = velocity
 
 func _process(_delta):
 	$LevelLabel.text = str($Networking.sync_level).pad_decimals(2)

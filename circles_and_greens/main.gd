@@ -42,6 +42,10 @@ func _on_peer_disconnected(peer_id: int):
 func create_player(peer_id) -> void:
 	var p = preload("res://character.tscn").instantiate()
 	p.name = str(peer_id)
+	randomize()
+	var spawn_points = $SpawnPoints.get_children()
+	var rnd_spawn_point = spawn_points[randi() % spawn_points.size()]
+	p.sync_position = rnd_spawn_point.position
 	$Players.add_child(p)
 
 func destroy_player(peer_id) -> void:
