@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cveb06nmk7d4d"]
+[gd_scene load_steps=7 format=3 uid="uid://cveb06nmk7d4d"]
 
 [ext_resource type="Script" path="res://multiplayer_from_scratch/character.gd" id="1_0qpnu"]
 [ext_resource type="Texture2D" uid="uid://cbclpqc0r2x4v" path="res://icon.svg" id="1_5a4jo"]
 [ext_resource type="Script" path="res://multiplayer_from_scratch/player_networking.gd" id="3_dd7v8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pu7kb"]
+size = Vector2(121, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8nj5"]
 size = Vector2(129, 128)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gtn4u"]
@@ -14,19 +17,66 @@ properties/0/sync = true
 properties/1/path = NodePath(".:sync_velocity")
 properties/1/spawn = true
 properties/1/sync = true
+properties/2/path = NodePath(".:sync_level")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath(".:sync_is_dead")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath(".:sync_is_grows")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath(".:sync_is_damaged")
+properties/5/spawn = true
+properties/5/sync = true
 
-[node name="Character" type="CharacterBody2D"]
+[node name="Character" type="CharacterBody2D" groups=["characters"]]
 script = ExtResource("1_0qpnu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_5a4jo")
 
+[node name="NameLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -52.0
+offset_right = 50.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "player_name"
+
+[node name="LevelLabel" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -13.0
+offset_right = 20.0
+offset_bottom = 13.0
+size_flags_horizontal = 4
+text = "level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
+position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_pu7kb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_h8nj5")
 
 [node name="Networking" type="Node" parent="."]
 script = ExtResource("3_dd7v8")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Networking"]
 replication_config = SubResource("SceneReplicationConfig_gtn4u")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
