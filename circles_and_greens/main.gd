@@ -40,7 +40,7 @@ func _on_peer_disconnected(peer_id: int):
 	destroy_player(peer_id)
 
 func create_player(peer_id) -> void:
-	var p = preload("res://multiplayer_from_scratch/character.tscn").instantiate()
+	var p = preload("res://character.tscn").instantiate()
 	p.name = str(peer_id)
 	$Players.add_child(p)
 

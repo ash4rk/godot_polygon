@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cveb06nmk7d4d"]
+[gd_scene load_steps=7 format=3 uid="uid://brtuykh4ii33c"]
 
-[ext_resource type="Script" path="res://multiplayer_from_scratch/character.gd" id="1_0qpnu"]
-[ext_resource type="Texture2D" uid="uid://cbclpqc0r2x4v" path="res://icon.svg" id="1_5a4jo"]
-[ext_resource type="Script" path="res://multiplayer_from_scratch/player_networking.gd" id="3_dd7v8"]
+[ext_resource type="Script" path="res://character.gd" id="1_gpq1j"]
+[ext_resource type="Texture2D" uid="uid://cbclpqc0r2x4v" path="res://icon.svg" id="2_jthtn"]
+[ext_resource type="Script" path="res://player_networking.gd" id="3_t3uu5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pu7kb"]
 size = Vector2(121, 120)
@@ -31,10 +31,10 @@ properties/5/spawn = true
 properties/5/sync = true
 
 [node name="Character" type="CharacterBody2D" groups=["characters"]]
-script = ExtResource("1_0qpnu")
+script = ExtResource("1_gpq1j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_5a4jo")
+texture = ExtResource("2_jthtn")
 
 [node name="NameLabel" type="Label" parent="."]
 anchors_preset = 8
@@ -71,7 +71,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_h8nj5")
 
 [node name="Networking" type="Node" parent="."]
-script = ExtResource("3_dd7v8")
+script = ExtResource("3_t3uu5")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Networking"]
 replication_config = SubResource("SceneReplicationConfig_gtn4u")
