@@ -1,22 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://dur218wlm6t15"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mm7nk"]
-[ext_resource type="Texture2D" uid="uid://cig0c3x035skf" path="res://assets/circle_green.png" id="2_1bxco"]
+[ext_resource type="Texture2D" uid="uid://dv65r7otbg80j" path="res://assets/bg.jpg" id="2_pmoau"]
 [ext_resource type="PackedScene" uid="uid://b3vkmdli6ge7l" path="res://grower.tscn" id="3_fhp5l"]
 
 [node name="MainGame" type="Node"]
 script = ExtResource("1_mm7nk")
 
 [node name="BG" type="Sprite2D" parent="."]
-modulate = Color(0.113725, 0.333333, 0.72549, 1)
-position = Vector2(303, 301)
-scale = Vector2(2, 2)
-texture = ExtResource("2_1bxco")
+position = Vector2(1027, 577)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_pmoau")
 
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Grower" parent="." instance=ExtResource("3_fhp5l")]
-position = Vector2(548, 414)
+position = Vector2(986, 580)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://character.tscn")
