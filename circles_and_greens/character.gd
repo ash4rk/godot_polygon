@@ -32,10 +32,6 @@ func _physics_process(_delta):
 	if position.distance_to(inputs.target) > 10:
 		move_and_slide()
 
-
-func _process(_delta):
-	$LevelLabel.text = str($Networking.sync_level).pad_decimals(2)
-
 func is_local_authority():
 	return $Networking/MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id()
 
