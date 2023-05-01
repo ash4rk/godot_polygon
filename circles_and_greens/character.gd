@@ -35,6 +35,8 @@ func _physics_process(_delta):
 func is_local_authority():
 	return $Networking/MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id()
 
+func _process(_delta):
+	$LevelLabel.text = str($Networking.sync_level).pad_decimals(2)
 
 func _on_area_2d_area_entered(area):
 	var body = area.get_parent()
