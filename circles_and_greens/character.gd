@@ -65,3 +65,9 @@ func _on_area_2d_body_exited(body):
 	if body.is_in_group("characters"):
 		$Networking.sync_is_damaged = false
 
+func killed() -> void:
+	visible = false
+	position = get_tree().get_current_scene().get_random_spawn_point_pos()
+	$Networking.sync_level = 1.0
+	$Networking.sync_is_dead = false
+	visible = true

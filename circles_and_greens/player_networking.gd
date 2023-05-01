@@ -18,7 +18,7 @@ func _set_sync_level(value):
 	if value < 0.5:
 		sync_is_dead = true
 		print("Player Dead!")
-		get_parent().queue_free()
+		get_parent().killed()
 		return
 	sync_level = value
 	character.scale = Vector2(sync_level, sync_level)
