@@ -43,12 +43,19 @@ func _on_area_2d_area_entered(area):
 	if body.is_in_group("growers") and !body.sync_is_active:
 		$Networking.sync_is_grows = true
 #		body.is_active = true
+	if body.is_in_group("killers"):
+		$Networking.sync_is_grows = true
+		$Networking.sync_is_damaged = true
 
 func _on_area_2d_area_exited(area):
 	var body = area.get_parent()
 	if body.is_in_group("growers"):
 		$Networking.sync_is_grows = false
 #		body.is_active = false
+	if body.is_in_group("killers"):
+		$Networking.sync_is_grows = false
+		$Networking.sync_is_damaged = false
+
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("characters") and body != self:

@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://20buhso57hwd"]
+
+[ext_resource type="Texture2D" uid="uid://cig0c3x035skf" path="res://assets/circle_green.png" id="2_6xflv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fxect"]
+radius = 30.1496
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2n3pl"]
+radius = 117.346
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8nnr5"]
+properties/0/path = NodePath(".:sync_is_active")
+properties/0/spawn = true
+properties/0/sync = true
+
+[node name="Killer" type="StaticBody2D" groups=["killers"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.690196, 0, 0.176471, 1)
+scale = Vector2(0.216, 0.216)
+texture = ExtResource("2_6xflv")
+
+[node name="AreaSprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.878431, 0, 0.878431, 0.305882)
+scale = Vector2(0.849, 0.849)
+texture = ExtResource("2_6xflv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fxect")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2n3pl")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_8nnr5")

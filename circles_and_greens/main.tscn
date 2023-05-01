@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dur218wlm6t15"]
+[gd_scene load_steps=5 format=3 uid="uid://dur218wlm6t15"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mm7nk"]
 [ext_resource type="Texture2D" uid="uid://dv65r7otbg80j" path="res://assets/bg.jpg" id="2_pmoau"]
 [ext_resource type="PackedScene" uid="uid://b3vkmdli6ge7l" path="res://grower.tscn" id="3_fhp5l"]
+[ext_resource type="PackedScene" uid="uid://20buhso57hwd" path="res://killer.tscn" id="4_r8haa"]
 
 [node name="MainGame" type="Node"]
 script = ExtResource("1_mm7nk")
@@ -16,6 +17,20 @@ texture = ExtResource("2_pmoau")
 
 [node name="Grower" parent="." instance=ExtResource("3_fhp5l")]
 position = Vector2(986, 580)
+
+[node name="Killers" type="Node2D" parent="."]
+
+[node name="Killer1" parent="Killers" instance=ExtResource("4_r8haa")]
+position = Vector2(45, 49)
+
+[node name="Killer2" parent="Killers" instance=ExtResource("4_r8haa")]
+position = Vector2(1875, 44)
+
+[node name="Killer3" parent="Killers" instance=ExtResource("4_r8haa")]
+position = Vector2(1871, 1051)
+
+[node name="Killer4" parent="Killers" instance=ExtResource("4_r8haa")]
+position = Vector2(73, 1051)
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 
