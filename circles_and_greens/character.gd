@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @export var speed = 400
 @export var sync_position := Vector2()
-@export var colour := Vector3(1.0, 1.0, 1.0)
 
 @onready var inputs = $Networking
 const INIT_SPEED = 400
