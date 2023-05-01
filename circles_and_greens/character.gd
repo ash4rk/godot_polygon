@@ -42,15 +42,15 @@ func is_local_authority():
 
 func _on_area_2d_area_entered(area):
 	var body = area.get_parent()
-	if body.is_in_group("growers") and !body.is_active:
+	if body.is_in_group("growers") and !body.sync_is_active:
 		$Networking.sync_is_grows = true
-		body.is_active = true
+#		body.is_active = true
 
 func _on_area_2d_area_exited(area):
 	var body = area.get_parent()
 	if body.is_in_group("growers"):
 		$Networking.sync_is_grows = false
-		body.is_active = false
+#		body.is_active = false
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("characters") and body != self:

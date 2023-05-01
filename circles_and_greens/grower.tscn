@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3vkmdli6ge7l"]
+[gd_scene load_steps=6 format=3 uid="uid://b3vkmdli6ge7l"]
 
 [ext_resource type="Script" path="res://grower.gd" id="1_ghhok"]
 [ext_resource type="Texture2D" uid="uid://cig0c3x035skf" path="res://assets/circle_green.png" id="1_mk46r"]
@@ -8,6 +8,11 @@ radius = 69.1809
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2n3pl"]
 radius = 277.613
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8nnr5"]
+properties/0/path = NodePath(".:sync_is_active")
+properties/0/spawn = true
+properties/0/sync = true
 
 [node name="Grower" type="StaticBody2D" groups=["growers"]]
 script = ExtResource("1_ghhok")
@@ -28,3 +33,9 @@ shape = SubResource("CircleShape2D_fxect")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_2n3pl")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_8nnr5")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

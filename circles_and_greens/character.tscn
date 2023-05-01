@@ -14,6 +14,9 @@ size = Vector2(129, 128)
 properties/0/path = NodePath(".:sync_position")
 properties/0/spawn = true
 properties/0/sync = true
+properties/1/path = NodePath("Sprite2D:modulate")
+properties/1/spawn = true
+properties/1/sync = true
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gtn4u"]
 properties/0/path = NodePath(".:sync_level")
