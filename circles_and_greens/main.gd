@@ -43,6 +43,7 @@ func create_player(peer_id) -> void:
 	var p = preload("res://character.tscn").instantiate()
 	p.name = str(peer_id)
 	p.sync_position = get_random_spawn_point_pos()
+#	p.set_random_color()
 	$Players.add_child(p)
 
 func destroy_player(peer_id) -> void:
@@ -53,3 +54,4 @@ func get_random_spawn_point_pos() -> Vector2:
 	var spawn_points = $SpawnPoints.get_children()
 	var rnd_spawn_point = spawn_points[randi() % spawn_points.size()]
 	return rnd_spawn_point.position
+
