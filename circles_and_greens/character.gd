@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const EXPLOSION_SCENE = preload("res://explosion.tscn")
+
 @export var speed = 400
 @export var sync_position := Vector2()
 
@@ -67,6 +69,11 @@ func _on_area_2d_body_exited(body):
 		$Networking.sync_is_damaged = false
 
 func killed() -> void:
+	var explosion = EXPLOSION_SCENE.instantiate()
+	explosion.position = self.position
+	explosion.color = self.modulate
+	get_tree().get_current_scene().add_child(explosion)
+	explosion.emitting = true
 	visible = false
 	position = get_tree().get_current_scene().get_random_spawn_point_pos()
 	$Networking.sync_level = 1.0
