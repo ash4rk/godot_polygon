@@ -7,14 +7,12 @@
 [ext_resource type="Material" uid="uid://ddpgp1pyklffr" path="res://addons/ThirdPersonTemplate/Environments/Materials/GreenGrid.material" id="6_5rtke"]
 [ext_resource type="Material" uid="uid://bquocw2a8n271" path="res://addons/ThirdPersonTemplate/Environments/Materials/GreyGrid.material" id="6_7xeo2"]
 [ext_resource type="Material" uid="uid://cpk3jtowelhgh" path="res://addons/ThirdPersonTemplate/Environments/Materials/PingkGrid.material" id="7_xstjq"]
-[ext_resource type="PackedScene" uid="uid://7pr6vqsnjeul" path="res://assets/old_style_fpsplayer/os_fpsplayer.tscn" id="8_23blk"]
+[ext_resource type="PackedScene" uid="uid://mt2bdbnv4r5f" path="res://assets/fpsplayer/player.tscn" id="8_djs7q"]
 
 [sub_resource type="Environment" id="Environment_qyvd4"]
 background_mode = 2
 background_color = Color(0.647059, 0.909804, 0.917647, 1)
 sky = ExtResource("2_vp21c")
-ssao_enabled = true
-sdfgi_enabled = true
 adjustment_enabled = true
 adjustment_saturation = 1.15
 
@@ -117,6 +115,9 @@ operation = 2
 size = Vector3(22, 10, 14)
 material = ExtResource("6_7xeo2")
 
+[node name="Player" parent="." instance=ExtResource("8_djs7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51843, 4.39574)
+
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83263, 0)
 
@@ -124,6 +125,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83263, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("BoxShape3D_52k67")
-
-[node name="OldStyleFPSPlayer" parent="." instance=ExtResource("8_23blk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.50327, 3.23983, 4.82396)
