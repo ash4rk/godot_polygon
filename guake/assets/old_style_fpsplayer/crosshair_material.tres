@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cs4rqi2vcvjec"]
+
+[ext_resource type="Shader" path="res://assets/old_style_fpsplayer/crosshair.gdshader" id="1_l7mxx"]
+
+[resource]
+shader = ExtResource("1_l7mxx")
+shader_parameter/center_enabled = true
+shader_parameter/legs_enabled = true
+shader_parameter/inverted = false
+shader_parameter/color_id = 0
+shader_parameter/color_0 = Quaternion(0, 1, 0, 1)
+shader_parameter/color_1 = Quaternion(1, 0, 0, 1)
+shader_parameter/color_2 = Quaternion(0, 0, 1, 1)
+shader_parameter/center_radius = 0.003
+shader_parameter/width = 0.003
+shader_parameter/len = 0.02
+shader_parameter/spacing = 0.008
+shader_parameter/spread = 1.0
