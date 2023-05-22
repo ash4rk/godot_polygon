@@ -1,13 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3xm68472y8ug"]
+[gd_scene load_steps=5 format=3 uid="uid://bvcmdx1oniek6"]
+
+[ext_resource type="PackedScene" uid="uid://dgpjxoygnvyy4" path="res://assets/simple_fpsplayer/Player.tscn" id="1_blopi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_e1cl4"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2rh0v"]
+
+[sub_resource type="Environment" id="Environment_0yfms"]
+
 [node name="main" type="Node"]
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(103.127, 0, 0, 0, 1, 0, 0, 0, 94.3062, 0, 0, 0)
 mesh = SubResource("BoxMesh_e1cl4")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.957888, 0.287143, 0, -0.287143, 0.957888, 0, 2.76788, 3.91212)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(103.127, 0, 0, 0, 1, 0, 0, 0, 94.3062, 0, 0, 0)
+shape = SubResource("BoxShape3D_2rh0v")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0yfms")
+
+[node name="Player" parent="." instance=ExtResource("1_blopi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.90243, 0)
