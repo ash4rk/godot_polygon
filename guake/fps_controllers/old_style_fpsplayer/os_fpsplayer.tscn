@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://7pr6vqsnjeul"]
 
-[ext_resource type="Script" path="res://assets/old_style_fpsplayer/os_fpsplayer.gd" id="1_s3gbb"]
-[ext_resource type="Material" uid="uid://cs4rqi2vcvjec" path="res://assets/old_style_fpsplayer/crosshair_material.tres" id="2_8kllk"]
+[ext_resource type="Script" path="res://fps_controllers/old_style_fpsplayer/os_fpsplayer.gd" id="1_s3gbb"]
+[ext_resource type="Material" uid="uid://cs4rqi2vcvjec" path="res://fps_controllers/old_style_fpsplayer/crosshair_material.tres" id="2_8kllk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ywimc"]
 radius = 0.25
