@@ -70,6 +70,17 @@ focus_previous = NodePath("../OptionsButton")
 theme_override_font_sizes/font_size = 30
 text = "Quit"
 
+[node name="ServerButton" type="Button" parent="Content"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../OptionsButton")
+focus_neighbor_bottom = NodePath("../StartGameButton")
+focus_next = NodePath("../StartGameButton")
+focus_previous = NodePath("../OptionsButton")
+theme_override_font_sizes/font_size = 30
+text = "Start Server"
+
 [node name="OptionsMenu" parent="." instance=ExtResource("2_pwqpr")]
 unique_name_in_owner = true
 visible = false
@@ -78,4 +89,5 @@ layout_mode = 1
 [connection signal="pressed" from="Content/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="Content/OptionsButton" to="." method="open_options"]
 [connection signal="pressed" from="Content/QuitButton" to="." method="quit"]
+[connection signal="pressed" from="Content/ServerButton" to="." method="_on_server_button_pressed"]
 [connection signal="close" from="OptionsMenu" to="." method="close_options"]

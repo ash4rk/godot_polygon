@@ -15,18 +15,24 @@ var rotation_helper
 
 var MOUSE_SENSITIVITY = 0.05
 
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
+
 func _ready():
+	if not is_multiplayer_authority(): return
 	camera = $RotationHelper/PlayerEyes
 	rotation_helper = $RotationHelper
+	camera.current = true
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
+	if not is_multiplayer_authority(): return
+	
 	process_input(delta)
 	process_movement(delta)
 
 func process_input(_delta):
-
 	# ----------------------------------
 	# Walking
 	dir = Vector3()
@@ -90,6 +96,8 @@ func process_movement(delta):
 	move_and_slide()
 
 func _input(event):
+	if not is_multiplayer_authority(): return
+		
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotation_helper.rotate_x(deg_to_rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 		self.rotate_y(deg_to_rad(event.relative.x * MOUSE_SENSITIVITY * -1))

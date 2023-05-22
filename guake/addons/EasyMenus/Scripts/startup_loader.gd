@@ -30,7 +30,7 @@ func load_settings():
 	
 	get_viewport().scaling_3d_scale = render_scale
 	
-	if vsync:q
+	if vsync:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
