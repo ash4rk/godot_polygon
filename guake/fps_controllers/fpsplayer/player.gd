@@ -125,8 +125,6 @@ func _input(event):
 func play_shoot_effects():
 	anim_player.stop()
 	anim_player.play("shoot")
-	$RotationHelper/PlayerEyes/Weapon/MuzzleFlash.restart()
-	$RotationHelper/PlayerEyes/Weapon/MuzzleFlash.emitting = true
 
 @rpc("any_peer")
 func receive_damage():

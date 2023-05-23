@@ -18,7 +18,8 @@ albedo_texture = ExtResource("2_r6k1s")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eyh1b"]
 albedo_texture = ExtResource("2_r6k1s")
 
-[node name="double_barrel" instance=ExtResource("1_i58aq")]
+[node name="Shotgun" instance=ExtResource("1_i58aq")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
 [node name="Base" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_k88pw")
