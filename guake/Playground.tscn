@@ -157,7 +157,7 @@ value = 3.0
 show_percentage = false
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://fps_controllers/fpsplayer/player.tscn")
+_spawnable_scenes = PackedStringArray("res://fps_controllers/fpsplayer/player.tscn", "res://weapons/bullet_hole_decal.tscn")
 spawn_path = NodePath("..")
 
 [node name="ServerCam" type="Camera3D" parent="."]
