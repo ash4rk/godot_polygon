@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://mt2bdbnv4r5f"]
+[gd_scene load_steps=10 format=3 uid="uid://mt2bdbnv4r5f"]
 
 [ext_resource type="Script" path="res://fps_controllers/fpsplayer/player.gd" id="1_mlw0o"]
+[ext_resource type="PackedScene" uid="uid://dblp3hl7wuwpm" path="res://assets/m4a1.tscn" id="2_glxdr"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.75
@@ -9,6 +10,86 @@ height = 1.5
 [sub_resource type="CapsuleMesh" id="2"]
 radius = 0.402
 height = 1.0
+
+[sub_resource type="Animation" id="Animation_7823i"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RotationHelper/PlayerEyes/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-0.732043, -0.659754),
+"update": 0,
+"values": [Vector3(0.164, -0.25, -0.258), Vector3(0.143, -0.272, -0.258)]
+}
+
+[sub_resource type="Animation" id="Animation_lomnk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RotationHelper/PlayerEyes/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.164, -0.25, -0.258)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RotationHelper/PlayerEyes/Weapon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.06131, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uyjw3"]
+resource_name = "shoot"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RotationHelper/PlayerEyes/Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 4.59479),
+"update": 0,
+"values": [Vector3(-0.198968, 3.06131, 0), Vector3(0, 3.06131, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RotationHelper/PlayerEyes/Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 4.5948),
+"update": 0,
+"values": [Vector3(0.147, -0.249, -0.229), Vector3(0.164, -0.25, -0.258)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lgblm"]
+_data = {
+"RESET": SubResource("Animation_lomnk"),
+"idle": SubResource("Animation_7823i"),
+"shoot": SubResource("Animation_uyjw3")
+}
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fcapm"]
 properties/0/path = NodePath(".:position")
@@ -32,5 +113,19 @@ mesh = SubResource("2")
 
 [node name="PlayerEyes" type="Camera3D" parent="RotationHelper"]
 
+[node name="Weapon" parent="RotationHelper/PlayerEyes" instance=ExtResource("2_glxdr")]
+transform = Transform3D(-0.996779, 0, 0.080199, 0, 1, 0, -0.080199, 0, -0.996779, 0.164, -0.25, -0.258)
+
+[node name="RayCast3D" type="RayCast3D" parent="RotationHelper/PlayerEyes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -1000, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lgblm")
+}
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_fcapm")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

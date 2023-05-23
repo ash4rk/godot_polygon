@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dblp3hl7wuwpm"]
+
+[ext_resource type="PackedScene" uid="uid://cnt6k8biph7na" path="res://assets/m4a1.glb" id="1_iw4xn"]
+[ext_resource type="Texture2D" uid="uid://bwm3hbmygnqmu" path="res://assets/M4A1Diffuse.png" id="2_vmy1j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58vf2"]
+albedo_texture = ExtResource("2_vmy1j")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2xv4"]
+albedo_texture = ExtResource("2_vmy1j")
+
+[node name="m4a1" instance=ExtResource("1_iw4xn")]
+
+[node name="M4A1" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_58vf2")
+
+[node name="M4A1_magazine" parent="M4A1" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_p2xv4")

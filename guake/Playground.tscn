@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://hcfwkhghoe0"]
+[gd_scene load_steps=14 format=3 uid="uid://hcfwkhghoe0"]
 
 [ext_resource type="Script" path="res://Playground.gd" id="1_fxj0f"]
 [ext_resource type="Sky" uid="uid://cbbdl23q60wak" path="res://addons/ThirdPersonTemplate/Environments/SkyBox.res" id="2_vp21c"]
@@ -17,6 +17,15 @@ adjustment_enabled = true
 adjustment_saturation = 1.15
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_52k67"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4vyt"]
+bg_color = Color(0.913725, 0, 0.164706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15lav"]
+bg_color = Color(0, 0.756863, 0.329412, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f0egn"]
+size = Vector3(390.957, 1222.22, 529.805)
 
 [node name="World" type="Node"]
 script = ExtResource("1_fxj0f")
@@ -125,6 +134,28 @@ shape = SubResource("BoxShape3D_52k67")
 
 [node name="MainMenu" parent="CanvasLayer" instance=ExtResource("8_wwgdg")]
 
+[node name="HUD" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 47.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_f4vyt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_15lav")
+max_value = 3.0
+value = 3.0
+show_percentage = false
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://fps_controllers/fpsplayer/player.tscn")
 spawn_path = NodePath("..")
@@ -132,4 +163,11 @@ spawn_path = NodePath("..")
 [node name="ServerCam" type="Camera3D" parent="."]
 transform = Transform3D(0.121939, 0, 0.992538, 0, 1, 0, -0.992538, 0, 0.121939, 27.2046, 0, 0)
 
+[node name="DeathArea3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -680.777, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathArea3D"]
+shape = SubResource("BoxShape3D_f0egn")
+
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
+[connection signal="body_entered" from="DeathArea3D" to="." method="_on_death_area_3d_body_entered"]

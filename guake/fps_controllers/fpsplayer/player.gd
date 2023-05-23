@@ -1,9 +1,16 @@
 extends CharacterBody3D
 
+signal health_changed(health_value)
+
 const GRAVITY = -24.8
 const MAX_SPEED = 20
 const JUMP_SPEED = 10
 const ACCEL = 4.5
+
+@onready var anim_player = $AnimationPlayer
+@onready var raycast = $RotationHelper/PlayerEyes/RayCast3D
+
+var health = 3
 
 var dir = Vector3()
 
@@ -71,6 +78,14 @@ func process_input(_delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# ----------------------------------
+	# Shooting
+	if Input.is_action_just_pressed("shoot") \
+			and anim_player.current_animation != "shoot":
+		play_shoot_effects.rpc()
+		if raycast.is_colliding() and raycast.get_collider().has_method("receive_damage"):
+			var hit_player = raycast.get_collider()
+			hit_player.receive_damage.rpc_id(hit_player.get_multiplayer_authority())
+	# ----------------------------------
 
 func process_movement(delta):
 	dir.y = 0
@@ -106,3 +121,21 @@ func _input(event):
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
 		rotation_helper.rotation_degrees = camera_rot
 
+@rpc("call_local")
+func play_shoot_effects():
+	anim_player.stop()
+	anim_player.play("shoot")
+#	muzzle_flash.restart()
+#	muzzle_flash.emitting = true
+
+@rpc("any_peer")
+func receive_damage():
+	health -= 1
+	if health <= 0:
+		health = 3
+		position = Vector3.ZERO
+	health_changed.emit(health)
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "shoot":
+		anim_player.play("idle")
