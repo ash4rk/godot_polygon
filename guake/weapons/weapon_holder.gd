@@ -7,16 +7,17 @@ enum WEAPONS {PISTOL, ASSAULT_RIFLE, SHOTGUN, BAZOOKA, SNIPER_RIFLE}
 var current_weapon = 1
 
 func _input(_event):
+	# Using Match?
 	if Input.is_action_pressed("get_pistol"):
-		current_weapon = 0
+		current_weapon = WEAPONS.PISTOL
 	if Input.is_action_pressed("get_assault_rifle"):
-		current_weapon = 1
+		current_weapon = WEAPONS.ASSAULT_RIFLE
 	if Input.is_action_pressed("get_shotgun"):
-		current_weapon = 2
+		current_weapon = WEAPONS.SHOTGUN
 	if Input.is_action_pressed("get_bazooka"):
-		current_weapon = 3
+		current_weapon = WEAPONS.BAZOOKA
 	if Input.is_action_pressed("get_sniper_rifle"):
-		current_weapon = 4
+		current_weapon = WEAPONS.SNIPER_RIFLE
 	weapon_switch()
 
 func _ready():
