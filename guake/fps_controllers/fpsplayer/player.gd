@@ -6,20 +6,16 @@ const GRAVITY = -24.8
 const MAX_SPEED = 20
 const JUMP_SPEED = 10
 const ACCEL = 4.5
-
-@onready var raycast = $RotationHelper/PlayerEyes/RayCast3D
-
-var health = 3
-
-var dir = Vector3()
-
 const DEACCEL= 16
 const MAX_SLOPE_ANGLE = 40
+const MOUSE_SENSITIVITY = 0.05
 
-var camera
-var rotation_helper
-
-var MOUSE_SENSITIVITY = 0.05
+# Movement
+var input_dir = Vector3()
+@onready var camera: Camera3D = $RotationHelper/PlayerEyes
+@onready var rotation_helper: Node3D = $RotationHelper
+# Stats
+var health = 3
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -28,23 +24,21 @@ func _ready():
 	if not is_multiplayer_authority():
 		$Armature.show()
 		return
-		
-	camera = $RotationHelper/PlayerEyes
-	rotation_helper = $RotationHelper
-	camera.current = true
 
+	camera.current = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	
-	process_input(delta)
-	process_movement(delta)
+	_process_input(delta)
+	_process_movement(delta)
+	_process_animation()
 
-func process_input(_delta):
+func _process_input(_delta):
 	# ----------------------------------
 	# Walking
-	dir = Vector3()
+	input_dir = Vector3()
 	var cam_xform = camera.get_global_transform()
 
 	var input_movement_vector = Vector2()
@@ -61,8 +55,8 @@ func process_input(_delta):
 	input_movement_vector = input_movement_vector.normalized()
 
 	# Basis vectors are already normalized.
-	dir += -cam_xform.basis.z * input_movement_vector.y
-	dir += cam_xform.basis.x * input_movement_vector.x
+	input_dir += -cam_xform.basis.z * input_movement_vector.y
+	input_dir += cam_xform.basis.x * input_movement_vector.x
 	# ----------------------------------
 
 	# ----------------------------------
@@ -81,20 +75,20 @@ func process_input(_delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# ----------------------------------
 
-func process_movement(delta):
-	dir.y = 0
-	dir = dir.normalized()
+func _process_movement(delta):
+	input_dir.y = 0
+	input_dir = input_dir.normalized()
 
 	velocity.y += delta * GRAVITY
 
 	var hvel = velocity
 	hvel.y = 0
 
-	var target = dir
+	var target = input_dir
 	target *= MAX_SPEED
 
 	var accel
-	if dir.dot(hvel) > 0:
+	if input_dir.dot(hvel) > 0:
 		accel = ACCEL
 	else:
 		accel = DEACCEL
@@ -103,9 +97,11 @@ func process_movement(delta):
 	velocity.x = hvel.x
 	velocity.z = hvel.z
 	
-	$AnimationTree.set("parameters/conditions/idle", dir == Vector3.ZERO)
-	$AnimationTree.set("parameters/conditions/walk", dir != Vector3.ZERO)
 	move_and_slide()
+
+func _process_animation():
+	$AnimationTree.set("parameters/conditions/idle", input_dir == Vector3.ZERO)
+	$AnimationTree.set("parameters/conditions/walk", input_dir != Vector3.ZERO)
 
 func _input(event):
 	if not is_multiplayer_authority(): return
