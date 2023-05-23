@@ -7,7 +7,6 @@ const MAX_SPEED = 20
 const JUMP_SPEED = 10
 const ACCEL = 4.5
 
-@onready var anim_player = $AnimationPlayer
 @onready var raycast = $RotationHelper/PlayerEyes/RayCast3D
 
 var health = 3
@@ -26,7 +25,10 @@ func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
-	if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority():
+		$Armature.show()
+		return
+		
 	camera = $RotationHelper/PlayerEyes
 	rotation_helper = $RotationHelper
 	camera.current = true
@@ -100,6 +102,9 @@ func process_movement(delta):
 	hvel = hvel.lerp(target, accel * delta)
 	velocity.x = hvel.x
 	velocity.z = hvel.z
+	
+	$AnimationTree.set("parameters/conditions/idle", dir == Vector3.ZERO)
+	$AnimationTree.set("parameters/conditions/walk", dir != Vector3.ZERO)
 	move_and_slide()
 
 func _input(event):
