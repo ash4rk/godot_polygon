@@ -2,6 +2,8 @@ extends Node3D
 
 enum WEAPONS {PISTOL, ASSAULT_RIFLE, SHOTGUN, BAZOOKA, SNIPER_RIFLE}
 
+@export var anim_player: AnimationPlayer
+
 var current_weapon = 1
 
 func _input(_event):
@@ -30,4 +32,8 @@ func weapon_switch():
 		get_child(child).process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	get_child(current_weapon).show()
 	get_child(current_weapon).process_mode = Node.PROCESS_MODE_INHERIT
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "shoot":
+		anim_player.play("idle")
 
