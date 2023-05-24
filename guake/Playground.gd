@@ -3,15 +3,17 @@ extends Node
 @onready var health_bar = $CanvasLayer/HUD/HealthBar
 
 const Player = preload("res://character/character.tscn")
-const PORT = 8000
+const PORT = 4242
 var enet_peer = ENetMultiplayerPeer.new()
 
 func _ready():
 	$CanvasLayer/MainMenu.start_client.connect(_on_start_client)
 	$CanvasLayer/MainMenu.start_server.connect(_on_start_server)
+	if OS.get_cmdline_user_args().has("--server"):
+		_on_start_server()
 
-func _on_start_client():
-	enet_peer.create_client("localhost", PORT)
+func _on_start_client(ip_address: String):
+	enet_peer.create_client(ip_address, PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	$CanvasLayer/HUD.visible = true
 
