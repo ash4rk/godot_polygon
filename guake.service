@@ -1,0 +1,24 @@
+# How to configure guake-server as service:
+# 1) Add guake user
+# useradd --system --no-create-home --shell=/sbin/nologin guake
+# 2) Place executable to ~/game/
+# 3) Place this file to /etc/systemd/system/guake.service
+# 4) systemctl enable guake-server
+# 5) systemctl start guake-server
+
+[Unit]
+Description=guake-server
+Requires=network.target network-online.target
+
+[Service]
+WorkingDirectory=/game
+
+User=guake
+Group=guake
+
+Restart=always
+
+ExecStart=/home/ash4rk/game/guake --headless ++ --server
+
+[Install]
+WantedBy=multi-user.target
