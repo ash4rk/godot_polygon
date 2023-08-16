@@ -21,7 +21,7 @@ func _ready():
 	
 	graph[1][2] = 2
 	graph[2][1] = 2
-	
+	7
 	graph[3][2] = 1
 	graph[2][3] = 1
 	
@@ -36,4 +36,5 @@ func create_graph(width: int, height: int) -> Array:
 			matrix[x].append(0)
 			
 	return matrix
+
 
