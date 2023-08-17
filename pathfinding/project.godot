@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "TextureRect",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://tile.gd"
+} ]
+_global_script_class_icons={
+"Tile": ""
+}
+
 [application]
 
 config/name="Pathfinding"

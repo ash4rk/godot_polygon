@@ -9,7 +9,7 @@ var grid := []
 
 func _ready():
 	generate_grid()
-	set_tile_color(1, 5, Color(1, 1, 0))
+	grid[1][4].state = Tile.State.WALL
 
 
 func generate_grid():
