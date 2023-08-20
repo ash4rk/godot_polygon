@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CanvasItem",
+"class": "LineDrawer",
+"language": "GDScript",
+"path": "res://drawing_item.gd"
+}, {
+"base": "TextureButton",
+"class": "Socket",
+"language": "GDScript",
+"path": "res://socket.gd"
+}, {
 "base": "TextureRect",
 "class": "Tile",
 "language": "GDScript",
 "path": "res://tile.gd"
 } ]
 _global_script_class_icons={
+"LineDrawer": "",
+"Socket": "",
 "Tile": ""
 }
 
@@ -24,9 +36,21 @@ config/name="Pathfinding"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+MouseController="*res://mouse_controller.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
 
 [physics]
 

@@ -5,7 +5,7 @@ signal mode_changed(new_value)
 enum MouseMode {DRAG, DRAW_PATHS}
 
 var mode = MouseMode.DRAG setget _set_mode
-
+var object_under: Node
 
 func _set_mode(new_value):
 	mode = new_value
