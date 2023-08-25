@@ -17,8 +17,8 @@ func _ready():
 			dragable.connect("input_event",self,"input_event",[dragable])
 
 func _process(delta):
-	if current is Node2D:
-		current.global_position = current.get_global_mouse_position() - drag_offset
+	if current and current.wire:
+		current.wire.global_position = current.wire.get_global_mouse_position() - drag_offset
 
 func mouse_entered(which):
 	candidates.append(which)
